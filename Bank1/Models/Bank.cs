@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Bank1.Models
 {
-    internal class Bank
+    public class Bank
     {
+        public Account Account { get; set; }
+        public string BankName { get; set; }
     }
 }
