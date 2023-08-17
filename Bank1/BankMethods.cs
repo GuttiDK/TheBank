@@ -9,7 +9,7 @@ namespace Bank1
 {
     public class BankMethods
     {
-        public string _bankName;
+        readonly string _bankName;
         int _idCounter;
         List<Account> _accounts;
 
@@ -21,9 +21,11 @@ namespace Bank1
 
 
 
-        public void CreateAccount(string name)
+        public Account CreateAccount(string name)
         {
-            _accounts.Add(new Account { Id = _idCounter++, Name = name, Balance = 0 });
+            Account account = new Account(name, ++_idCounter);
+            _accounts.Add(account);
+            return account;
         }
 
         public List<Account> GetAccounts()
@@ -31,22 +33,48 @@ namespace Bank1
             return _accounts;
         }
 
-        public decimal Deposit(Account account, decimal amount)
+        public decimal Deposit(int accountId, decimal amount)
         {
-            account.Balance += amount;
-            return account.Balance;
+            return _accounts.First(x => x.Id == accountId).Balance += amount;
         }
 
-        public decimal Withdraw(Account account, decimal amount)
+        public decimal Withdraw(int accountId, decimal amount)
         {
-            account.Balance -= amount;
-            return account.Balance;
+            return _accounts.First(x => x.Id == accountId).Balance -= amount;
         }
 
-        public decimal Balance(Account account)
+        public decimal Balance(int accountId)
         {
-            return account.Balance;
+            return _accounts.First(x => x.Id == accountId).Balance;
         }
 
+        public string GetBankName()
+        {
+            return _bankName;
+        }
+
+        public Account FindAccountName(string? accountName)
+        {
+            if (accountName != null)
+            {
+                return _accounts.First(x => x.Name == accountName);
+            }
+            else
+            {
+                throw new Exception("No account found");
+            }
+        }
+
+        public Account FindAccountId(int? accountId)
+        {
+            if (accountId != null)
+            {
+                return _accounts.First(x => x.Id == accountId);
+            }
+            else
+            {
+                throw new Exception("No account found");
+            }
+        }
     }
 }

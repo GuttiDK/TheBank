@@ -13,9 +13,10 @@ namespace Bank1.Models
         public decimal Balance { get; set; }
 
 
-        public Account(string? name = null)
+        public Account(string name, int id)
         {
             this.Name = name;
+            this.Id = id;
             this.Balance = 0;
         }
     }
