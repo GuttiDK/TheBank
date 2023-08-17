@@ -7,39 +7,49 @@ GuttiDK / Christian CH
 TheBank er et Console-projekt designet til at simulere en bank. Dette er den første del af projektet, og flere funktioner vil blive tilføjet i fremtidigen.
 
 
-## Changelog
+## Changelog - (Update Bank2)
 
 ### BankMethods.cs
-- **Added:** Klasse ved navn `BankMethods`.
-- **Added:** Private variabler: `_bankName`, `_idCounter`, og `_accounts`.
-- **Added:** Constructor til at initialisere bankens navn og en liste af konti.
-- **Added:** Metode `CreateAccount` til at oprette en ny konto med id, navn og balance.
-- **Added:** Metode `GetAccounts` til at returnere listen af konti.
-- **Added:** Metode `Deposit` til at indsætte penge på en given konto og returnere dens nye balance.
-- **Added:** Metode `Withdraw` til at hæve penge fra en given konto og returnere dens nye balance.
-- **Added:** Metode `Balance` til at returnere balancen for en given konto.
+
+**Tilføjet:**
+- Klasse `BankMethods` med private variabler: `_bankName`, `_idCounter` og `_accounts`.
+- Metode `CreateAccount` til at oprette en ny bankkonto.
+- Metode `GetAccounts` til at hente alle konti.
+- Grundlæggende bankdriftsmetoder: `Deposit` (Indsæt), `Withdraw` (Hæv), `Balance`.
+- Metode `GetBankName` til at hente bankens navn.
+- Metoder `FindAccountName` og `FindAccountId` til at finde en konto baseret på navn eller ID.
 
 ### Program.cs
-- **Added:** Klasse `Program` med `Main` metode.
-- **Implemented:** En instans af `BankMethods` med navnet "Bank of America".
-- **Added:** Oprettelse af en ny konto ved navn "John Doe".
-- **Added:** En række konsoludskrifter til demonstration af bankens funktionalitet.
 
-### Bank.cs 
-- **Added:** Klasse `Bank`.
-- **Added:** Properties `Account` og `BankName`.
+**Ændret:**
+- Implementeret en løkkebaseret brugergrænseflade for interaktion med bankoperationer.
 
-### Account.cs 
-- **Added:** Klasse `Account`.
-- **Added:** Properties: `Id`, `Name`, og `Balance`.
-- **Added:** Constructor der tager et valgfrit navn som parameter og initialiserer balancen til 0.
+**Tilføjet:**
+- Metode `Menu` til at vise en menu for brugeren.
+- Metode `ListAccounts` til at vise en liste over alle konti.
+- Input hjælpemetoder: `InputString`, `InputInt`, og `InputDecimal`.
+- Grundlæggende fejlhåndtering for ugyldigt input og under operationer.
+
+### Bank.cs
+
+**Tilføjet:**
+- Klasse `Bank` med egenskaberne `Account` (Konto) og `BankName` (BankNavn).
+
+### Account.cs
+
+**Tilføjet:**
+- Klasse `Account` med egenskaberne `Id`, `Name` (Navn) og `Balance`.
+- Konstruktør til at oprette en ny konto med navn og ID.
 
 ## Metodebeskrivelser
-- **CreateAccount**: Opretter en ny konto med en given id og navn, og initialiserer balancen til 0.
+- **CreateAccount**: Opretter en ny konto med en navn hvor den giver saldo 0 og giver et id.
 - **GetAccounts**: Returnerer en liste af alle oprettede konti.
-- **Deposit**: Indsætter en given mængde penge på en specificeret konto og returnerer den opdaterede balance.
-- **Withdraw**: Trækker en given mængde penge fra en specificeret konto og returnerer den opdaterede balance.
+- **Deposit**: Indsætter en given mængde penge på en specificeret konto og returnerer den opdaterede saldo.
+- **Withdraw**: Trækker en given mængde penge fra en specificeret konto og returnerer den opdaterede saldo.
 - **Balance**: Returnerer saldoen for en given konto.
+- **GetBankName**: Returnerer bankens navn som er en readonly.
+- **FindAccountName**: Finder en konto ud fra et givent navn og returnerer den.
+- **FindAccountId**: Finder en konto ud fra et givent id og returnerer den.
 
 ## Bugs & Known Bugs and Bug Reporting
 Vi arbejder konstant på at forbedre denne applikation. Hvis du støder på nogen bugs eller fejl, bedes du rapportere dem til os.
