@@ -73,6 +73,7 @@ namespace Bank1
                             break;
                         case "b":
                             ListAccounts(bank);
+                            Console.WriteLine($"Bankens beholdning er på {bank.BankBalance} kr.");
                             Console.ReadKey();
                             break;
                         case "x":

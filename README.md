@@ -7,7 +7,7 @@ GuttiDK / Christian CH
 TheBank er et Console-projekt designet til at simulere en bank. Dette er den første del af projektet, og flere funktioner vil blive tilføjet i fremtidigen.
 
 
-## Changelog - (Update Bank2)
+## Changelog - (Update Bank3)
 
 ### BankMethods.cs
 
@@ -47,6 +47,7 @@ TheBank er et Console-projekt designet til at simulere en bank. Dette er den før
 - **Deposit**: Indsætter en given mængde penge på en specificeret konto og returnerer den opdaterede saldo.
 - **Withdraw**: Trækker en given mængde penge fra en specificeret konto og returnerer den opdaterede saldo.
 - **Balance**: Returnerer saldoen for en given konto.
+- **BankBalance**: Returnerer den samlede balance for banken.
 - **GetBankName**: Returnerer bankens navn som er en readonly.
 - **FindAccountName**: Finder en konto ud fra et givent navn og returnerer den.
 - **FindAccountId**: Finder en konto ud fra et givent id og returnerer den.
