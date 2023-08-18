@@ -1,4 +1,5 @@
-﻿using Bank.Models;
+﻿using Bank.Exceptions;
+using Bank.Models;
 using Bank.Repository;
 using System;
 using System.Collections.Generic;
@@ -57,14 +58,40 @@ namespace Bank
 
         public decimal Deposit(int accountId, decimal amount)
         {
-            _bankbalance += amount;
-            return _accounts.First(x => x.Id == accountId).Balance += amount;
+            Account foundAccount = FindAccountId(accountId);
+            try
+            {
+                if (amount <= 0)
+                {
+                    throw new OverdraftException("Balance will go in minus, not allow");
+                }
+                else
+                {
+                    foundAccount.Balance += amount;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return foundAccount.Balance;
         }
 
         public decimal Withdraw(int accountId, decimal amount)
         {
-            _bankbalance -= amount;
-            return _accounts.First(x => x.Id == accountId).Balance -= amount;
+            Account foundAccount = FindAccountId(accountId);
+            try
+            {
+                if (foundAccount.Balance < amount)
+                {
+                    throw new OverdraftException("Balance will go in minus, not allow");
+                    foundAccount.Balance -= amount;
+                }
+            } catch (Exception e)
+            {
+                  Console.WriteLine(e.Message);
+            }
+            return foundAccount.Balance;
         }
 
         public decimal Balance(int accountId)
