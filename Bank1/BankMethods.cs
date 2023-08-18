@@ -11,23 +11,34 @@ namespace Bank1
     {
         readonly string _bankName;
         int _idCounter;
-        decimal _bankbalence;
+        decimal _bankbalance;
         List<Account> _accounts;
 
         public BankMethods(string name)
         {
             _bankName = name;
-            _bankbalence = 0;
+            _bankbalance = 0;
             _accounts = new List<Account>();
         }
 
 
 
-        public Account CreateAccount(string name)
+        public void CreateAccount(string name, AccountType type)
         {
-            Account account = new Account(name, ++_idCounter);
-            _accounts.Add(account);
-            return account;
+            switch (type)
+            {
+                case AccountType.Checking:
+                    _accounts.Add(new Checking { Id = ++_idCounter, Name = name, Type = type });
+                    break;
+                case AccountType.Savings:
+                    _accounts.Add(new Savings { Id = ++_idCounter, Name = name, Type = type });
+                    break;
+                case AccountType.Consumer:
+                    _accounts.Add(new Consumer { Id = ++_idCounter, Name = name, Type = type });
+                    break;
+                default:
+                    throw new Exception("Invalid account type");
+            }
         }
 
         public List<Account> GetAccounts()
@@ -35,26 +46,29 @@ namespace Bank1
             return _accounts;
         }
 
+        public void ChargeInterst()
+        {
+            foreach (Account account in _accounts)
+            {
+                account.CalculateInterest();
+            }
+        }
+
         public decimal Deposit(int accountId, decimal amount)
         {
-            _bankbalence += amount;
+            _bankbalance += amount;
             return _accounts.First(x => x.Id == accountId).Balance += amount;
         }
 
         public decimal Withdraw(int accountId, decimal amount)
         {
-            _bankbalence -= amount;
+            _bankbalance -= amount;
             return _accounts.First(x => x.Id == accountId).Balance -= amount;
         }
 
         public decimal Balance(int accountId)
         {
             return _accounts.First(x => x.Id == accountId).Balance;
-        }
-
-        public decimal BankBalance()
-        {
-            return _bankbalence;
         }
 
         public string GetBankName()
