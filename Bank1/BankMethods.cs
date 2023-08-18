@@ -11,11 +11,13 @@ namespace Bank1
     {
         readonly string _bankName;
         int _idCounter;
+        decimal _bankbalence;
         List<Account> _accounts;
 
         public BankMethods(string name)
         {
             _bankName = name;
+            _bankbalence = 0;
             _accounts = new List<Account>();
         }
 
@@ -35,17 +37,24 @@ namespace Bank1
 
         public decimal Deposit(int accountId, decimal amount)
         {
+            _bankbalence += amount;
             return _accounts.First(x => x.Id == accountId).Balance += amount;
         }
 
         public decimal Withdraw(int accountId, decimal amount)
         {
+            _bankbalence -= amount;
             return _accounts.First(x => x.Id == accountId).Balance -= amount;
         }
 
         public decimal Balance(int accountId)
         {
             return _accounts.First(x => x.Id == accountId).Balance;
+        }
+
+        public decimal BankBalance()
+        {
+            return _bankbalence;
         }
 
         public string GetBankName()
