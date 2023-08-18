@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bank1.Models
+namespace Bank.Models
 {
     public abstract class Account
     {
@@ -18,7 +18,7 @@ namespace Bank1.Models
     }
 
     public class Checking : Account
-    { 
+    {
         public override void CalculateInterest()
         {
             InterestRate = 1.005M;

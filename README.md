@@ -7,7 +7,7 @@ GuttiDK / Christian CH
 TheBank er et Console-projekt designet til at simulere en bank. Dette er den første del af projektet, og flere funktioner vil blive tilføjet i fremtidigen.
 
 
-## Changelog - (Update Bank4)
+## Changelog - (Update Bank5)
 
 ## BankMethods.cs
 
@@ -47,6 +47,8 @@ TheBank er et Console-projekt designet til at simulere en bank. Dette er den før
 - **Klasse `Bank`**
   - Repræsenterer konceptet med en bank.
   - Holder en liste af konti, bankbalance og en tæller for kontonumre.
+  The property public Account Account { get; set; } doesn't seem necessary in the Bank class. If its purpose is to store a "currently active" account, the name and its purpose should be clarified.
+It might be better to initialize the Accounts list inside the constructor to avoid a potential NullReferenceException.
 
 ## Account.cs
 
@@ -59,6 +61,11 @@ TheBank er et Console-projekt designet til at simulere en bank. Dette er den før
 
 - **Enum `AccountType`**
   - Opregner kontotyperne: Lønkonto, Opsparingskonto, Forbrugskonto.
+
+- **IBank.cs**
+Typically, interfaces in C# don't have an access modifier, but internal is used here. Ensure that this was intended.
+Methods like FindAccountName and FindAccountId might be confusing. Consider merging them into a single method, FindAccount, and use overloading or optional parameters.
+The GetAllAcc method might be better named GetAllAccountListItems for clarity.
 
 ## Metodebeskrivelser
 - **CreateAccount**: Opretter en ny konto med en navn hvor den giver saldo 0 og giver et id og giver en kontotype.

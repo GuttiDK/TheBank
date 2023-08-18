@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Bank1;
-using Bank1.Models;
+using Bank.Models;
 
-namespace Bank1
+namespace Bank
 {
     class Program
     {
@@ -165,7 +164,6 @@ namespace Bank1
         /// <returns>list</returns>
         public static void ListAccounts(BankMethods bank)
         {
-            decimal bankbalance = 0;
             if (bank.GetAccounts().Count == 0)
             {
                 Console.WriteLine("No accounts");
@@ -179,9 +177,8 @@ namespace Bank1
                 foreach (var item in bank.GetAccounts())
                 {
                     Console.WriteLine($"Name: {item.Name} ID: {item.Id} Balance: {item.Balance}");
-                    bankbalance += item.Balance;
                 }
-                Console.WriteLine($"Bankens beholdning er på {bank} kr.");
+                Console.WriteLine($"Bankens beholdning er på {bank.BankHolding} kr.");
             }
         }
 

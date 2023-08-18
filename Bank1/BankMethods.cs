@@ -1,13 +1,14 @@
-﻿using Bank1.Models;
+﻿using Bank.Models;
+using Bank.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bank1
+namespace Bank
 {
-    public class BankMethods
+    public class BankMethods : IBank
     {
         readonly string _bankName;
         int _idCounter;
@@ -71,6 +72,16 @@ namespace Bank1
             return _accounts.First(x => x.Id == accountId).Balance;
         }
 
+        public decimal BankHolding()
+        {
+            decimal bankhold = 0;
+            foreach (Account item in _accounts)
+            {
+                bankhold += item.Balance;
+            }
+            return bankhold;
+        }
+
         public string GetBankName()
         {
             return _bankName;
@@ -98,6 +109,16 @@ namespace Bank1
             {
                 throw new Exception("No account found");
             }
+        }
+
+        public List<AccountListItem> GetAllAcc()
+        {
+            List<AccountListItem> acc = new List<AccountListItem>();
+            foreach (Account item in _accounts)
+            {
+                acc.Add(new AccountListItem { Id = item.Id, Name = item.Name, Balance = item.Balance, Type = item.Type });
+            }
+            return acc;
         }
     }
 }
