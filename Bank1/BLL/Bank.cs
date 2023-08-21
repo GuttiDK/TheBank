@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bank.Models;
 
-namespace Bank1.Models
+namespace Bank.BLL
 {
     public class Bank
     {
@@ -14,11 +15,10 @@ namespace Bank1.Models
         public decimal BankBalance { get; set; }
         public int AccountNumberCounter { get; set; }
 
-
         public Bank(List<Account> accounts, decimal bankBalance)
         {
             Accounts = accounts;
-            this.BankBalance = bankBalance;
+            BankBalance = bankBalance;
         }
     }
 }
